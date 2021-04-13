@@ -17,7 +17,7 @@ const List<Choice> choices = const <Choice>[
 ];
 
 class Appbar_workshop extends StatelessWidget {
-  final appTitle = "Anucha workshop";
+  final appTitle = "Anucha workshop AppBar";
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +82,10 @@ class _HomePageState extends State<HomePage> {
     return PopupMenuButton<Choice>(
         onSelected: _select,
         itemBuilder: (context) {
-          return choices.skip(2).map((Choice choice) {
+          return choices.skip(2).map((Choice item) {
             return PopupMenuItem<Choice>(
-              child: Text(choice.title),
-              value: choice,
+              child: Text(item.title),
+              value: item,
             );
           }).toList();
         });
