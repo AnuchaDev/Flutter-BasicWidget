@@ -34,10 +34,15 @@ class Page1 extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacementNamed(context, '/page2');
             },
-            child: Text('Next Page')),
+            child: Text('Login')),
       ),
     );
   }
+}
+
+class User{
+  String fname;
+  User(this.fname);
 }
 
 class Page2 extends StatelessWidget {
@@ -49,8 +54,14 @@ class Page2 extends StatelessWidget {
       ),
       body: Center(
         child: FlatButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/page3');
+          onPressed: () async{
+            // Navigator.pushNamed(context, '/page3');
+            var user = User('Anucha');
+            var tel = "080";
+            var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              Page3(user:user,text: tel),
+            ));
+            print(result);
           },
           child: Text('Page2'),
         ),
@@ -60,8 +71,12 @@ class Page2 extends StatelessWidget {
 }
 
 class Page3 extends StatelessWidget {
+  String text;
+  User user;
+  Page3({this.user,this.text});
   @override
   Widget build(BuildContext context) {
+    print(user.fname);
     return Scaffold(
       appBar: AppBar(
         title: Text("Navigator workshop"),
@@ -69,7 +84,8 @@ class Page3 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/page4');
+            // Navigator.pushNamed(context, '/page4');
+            Navigator.pop(context,"Code");
           },
           child: Text('Page3'),
         ),
@@ -88,9 +104,11 @@ class Page4 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pushNamedAndRemoveUntil(context, '/page1', (Route<dynamic> route) => false);
+            // Navigator.pushNamedAndRemoveUntil(context, '/page4', ModalRoute.withName('/page2'));
+            // Navigator.popUntil(context, ModalRoute.withName('/page2'));
           },
-          child: Text('Page4'),
+          child: Text('Logout'),
         ),
       ),
     );
